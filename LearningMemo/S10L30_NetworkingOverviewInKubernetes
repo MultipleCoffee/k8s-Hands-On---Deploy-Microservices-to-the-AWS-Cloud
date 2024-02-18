@@ -1,0 +1,2 @@
+According to the lecturer, kubernetes has its original DNS server/function so that each service in kubernets can communicate with each other even though they have ephemeral IP addresses respectively, which hinder direct communications using IP address.
+Next video will introduce DNS in kubetnetes for more detail.
