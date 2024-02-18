@@ -1,0 +1,28 @@
+Kubernetes has a "namespace", which separates/integrates a group of pods by a name.
+For instance default encompasses some pods and kube-system encompasses some other ones of them and so on.
+You can check what namespaces exit by "kubectl get ns (or namespace)" executed:
+
+  $kubectl get ns
+  NAME              STATUS   AGE
+  default           Active   12h
+  kube-node-lease   Active   12h
+  kube-public       Active   12h
+  kube-system       Active   12h
+
+And if you wanna check what namespaces are included in a currect kubernetes environment, you can execute this command:
+  $kubectl get pods -n kube-system
+
+Without specifying the namespace, kubernetes processes a command with a default namespace, "default".
+  $kubectl get pods -n kube-system
+  NAME                                     READY   STATUS    RESTARTS   AGE
+  coredns-76f75df574-46r74                 1/1     Running   0          12h
+  coredns-76f75df574-g249s                 1/1     Running   0          12h
+  etcd-docker-desktop                      1/1     Running   0          12h
+  kube-apiserver-docker-desktop            1/1     Running   0          12h
+  kube-controller-manager-docker-desktop   1/1     Running   0          12h
+  kube-proxy-fcn48                         1/1     Running   0          12h
+  kube-scheduler-docker-desktop            1/1     Running   0          12h
+  storage-provisioner                      1/1     Running   0          12h
+  vpnkit-controller                        1/1     Running   0          12h
+
+Also, you can list a description by specifying a namespace.
