@@ -1,0 +1,24 @@
+Newly learned command:
+(1)A command to check a status of deployments
+  $ kubectl rollout status deployment RESOURCE
+  $ kubectl rollout status deployment webapp
+  deployment "webapp" successfully rolled out
+
+Interesting is that if I execute the above command just after changing an image of pods.yaml, whoso app is "webapp" and whoch kind is "Deployment", the output went as below:
+  $kubectl rollout status deployment webapp
+  Waiting for deployment "webapp" rollout to finish: 1 out of 2 new replicas have been updated...
+  Waiting for deployment "webapp" rollout to finish: 1 out of 2 new replicas have been updated...
+  Waiting for deployment "webapp" rollout to finish: 1 out of 2 new replicas have been updated...
+  Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+  Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+  Waiting for deployment "webapp" rollout to finish: 1 old replicas are pending termination...
+  deployment "webapp" successfully rolled out
+
+(2) a command to check a history of deployments
+  $ kubectl rollout history deploy webapp # deployment can be shortened deploy
+
+(3) a command to roll back to a previous version
+  $ kubectl rollout undo deploy # you can  specify the version you wanna revert the image back to by adding an option "--to-revision=X". Without it, kubernetes automatically recognize it as --to-revision=2 which is just the one before the present version.
+
+The manual rollback is not recommended unless it is required in emergency.
+The rollout deployment is useful if a definition file is wrong, for example, an identifier of an image file is misspelled, kubernetes do not deploy the wrong image and instead deploy a previous image.
