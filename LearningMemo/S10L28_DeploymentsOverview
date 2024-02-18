@@ -1,0 +1,6 @@
+The structure of Deployment is identical with that of ReplicaSet.
+So I changed the value of "kind" section in pods.yaml file, from ReplicaSet to Deployment.
+
+Additionally, I  the image from one of version 0 to version 0-5 and add "minReadySeconds" section with a value 30, which enables a rolling deployment without fiddling around with labels.
+
+In fact, even though I set the minReadySeconds as 30, which means I guess the rolling deployment would take 30 seconds to be deployed, the deployment had been renewed to the new version in shorter than 30 seconds (I checked it by Ctrl + F5 key to renew a webpage displayed by the container.) I might misunderstand the meaning and usage of "minReadySeconds". Anyways, I ignore this for now as I hope this feature is not a core thing in kubernetes.
